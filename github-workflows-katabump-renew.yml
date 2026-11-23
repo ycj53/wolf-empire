@@ -1,0 +1,56 @@
+# ============================================================================
+# MASTER YOUSEF WOLF EMPIRE — Katabump Auto-Renewal (GitHub Actions)
+# ----------------------------------------------------------------------------
+# Runs every 3 days, logs in to katabump.com, and clicks "renew" so your
+# free panel server stays alive (Katabump requires renewal every 4 days).
+#
+# Setup:
+#   1. Push this repo (or just this file + renew.py) to GitHub
+#   2. Go to: Settings → Secrets and variables → Actions
+#   3. Add these repository secrets:
+#        KATABUMP_EMAIL     — your katabump.com login email
+#        KATABUMP_PASSWORD  — your katabump.com login password
+#        SERVER_ID          — the server ID from katabump.com/server/<ID>
+#
+# Manual run: Actions tab → "Katabump Renewal" → Run workflow
+# ============================================================================
+name: Katabump Renewal
+
+on:
+  schedule:
+    # Every 3 days at 03:00 UTC (runs ~every 72h, well within 4-day limit)
+    - cron: '0 3 */3 * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  renew:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Playwright + Chromium
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+
+      - name: Run Katabump renewal
+        env:
+          KATABUMP_EMAIL: ${{ secrets.KATABUMP_EMAIL }}
+          KATABUMP_PASSWORD: ${{ secrets.KATABUMP_PASSWORD }}
+          SERVER_ID: ${{ secrets.SERVER_ID }}
+        run: python3 renew.py
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: renewal-screenshots
+          path: /tmp/kb-*.png
+          retention-days: 7

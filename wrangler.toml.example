@@ -1,0 +1,40 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "panel-silence"
+main = "worker.js"
+compatibility_date = "2024-11-06"
+compatibility_flags = ["nodejs_compat"]
+
+# workers.dev route
+workers_dev = true
+
+# KV namespace binding: env.KV
+[[kv_namespaces]]
+binding = "KV"
+id = "2201c97b22f246af9863c188eac94658"
+
+# Durable Object binding: LiveCounter
+[[durable_objects.bindings]]
+name = "LiveCounter"
+class_name = "LiveCounter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["LiveCounter"]
+
+# Panel configuration environment variables
+[vars]
+UUID = "06472f28-8568-4e61-9bd1-8ed64f25acc1"
+# Telegram bot token + admin chat id (provided by user)
+TG_BOT_TOKEN = "9194061291:AAFlCj5MqEztwDmrEj-y31WhlK9Hfd3fjM8"
+TG_ADMIN_ID = "7300596847"
+# Public URL of the panel (workers.dev route)
+PUBLIC_URL = "panel-silence.panel-silence.workers.dev"
+# WOLF AI (Gemini) — left empty; will return clear error if not set
+GEMINI_API_KEY = ""
+GEMINI_MODEL = "gemini-1.5-flash"
+# Branding
+BRAND_NAME = "MASTER YOUSEF"
+BRAND_FULL = "MASTER YOUSEF WOLF EMPIRE"
+SUPPORT_URL = "@Kmnbvczx0090"
+TELEGRAM_CHANNEL = "https://t.me/vpnstan1"
+

@@ -1,0 +1,12 @@
+# GitHub Issue Templates Config
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Telegram Support
+    url: https://t.me/Kmnbvczx0090
+    about: Get direct support on Telegram (fastest response)
+  - name: 📢 Official Channel
+    url: https://t.me/vpnstan1
+    about: Announcements and updates
+  - name: 📖 Documentation
+    url: https://github.com/USERNAME/wolf-empire/tree/main/docs
+    about: Read the documentation before opening an issue

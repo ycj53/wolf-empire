@@ -1,0 +1,30 @@
+{
+  "name": "wolf-empire-panel",
+  "version": "1.0.0",
+  "description": "MASTER YOUSEF WOLF EMPIRE — VPN Panel running on Node.js via Miniflare (works on Katabump, VPS, Docker, Railway)",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js --watch",
+    "test": "node -e \"console.log('Wolf Empire Panel - ready. Run: npm start')\""
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "miniflare": "^3.20240101.0",
+    "wrangler": "^3.90.0"
+  },
+  "keywords": [
+    "vpn",
+    "panel",
+    "vless",
+    "cloudflare-worker",
+    "katabump",
+    "wolf-empire",
+    "master-yousef"
+  ],
+  "author": "MASTER YOUSEF",
+  "license": "MIT"
+}

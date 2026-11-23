@@ -1,0 +1,35 @@
+# ============================================================================
+# MASTER YOUSEF WOLF EMPIRE — Dockerfile
+# Multi-stage: build deps, then run on slim Node image
+# ============================================================================
+FROM node:20-slim AS base
+
+WORKDIR /app
+
+# Copy package files first (better layer caching)
+COPY package.json package-lock.json* ./
+
+# Install production dependencies
+RUN npm ci --omit=dev --no-audit --no-fund 2>/dev/null || npm install --omit=dev --no-audit --no-fund
+
+# Copy the panel files
+COPY worker.js server.js ./
+COPY .env.example ./
+
+# Persistent storage for KV data
+RUN mkdir -p /app/kv-data
+VOLUME ["/app/kv-data"]
+
+# Env defaults (overridable at runtime via -e)
+ENV NODE_ENV=production
+ENV PORT=8787
+ENV HOST=0.0.0.0
+ENV KV_DIR=/app/kv-data
+
+EXPOSE 8787
+
+# Healthcheck — hits the panel root
+HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
+  CMD node -e "fetch('http://localhost:'+(process.env.PORT||8787)+'/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+
+CMD ["node", "server.js"]

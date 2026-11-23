@@ -1,0 +1,75 @@
+# ============================================================================
+# MASTER YOUSEF WOLF EMPIRE — .gitignore
+# ============================================================================
+
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.npm
+.pnp
+.pnp.js
+
+# --- Runtime data ---
+kv-data/
+.mf/
+.cache/
+tmp/
+*.tmp
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# --- Environment variables ---
+.env
+.env.local
+.env.production
+.env.staging
+.env.*.local
+!.env.example
+
+# --- Cloudflare Wrangler ---
+.wrangler/
+.dev.vars
+.dev.vars.*
+.mf/
+
+# --- Build artifacts ---
+dist/
+build/
+*.tsbuildinfo
+.next/
+out/
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- OS files ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# --- Testing ---
+coverage/
+.nyc_output/
+*.lcov
+
+# --- Misc ---
+*.bak
+*.orig
+*.rej

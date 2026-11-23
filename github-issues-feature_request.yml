@@ -1,0 +1,43 @@
+---
+name: ✨ Feature Request
+about: Suggest a new feature or improvement
+title: "[FEATURE] "
+labels: ["enhancement"]
+assignees: []
+---
+
+## ✨ Feature Description
+
+A clear description of what feature you'd like to see.
+
+## 🎯 Problem or Need
+
+What problem does this feature solve? Why do you need it?
+
+## 💡 Proposed Solution
+
+How would you like this feature to work?
+
+## 🔄 Alternatives Considered
+
+Any alternative solutions you've considered.
+
+## 🖼️ Mockups / Examples
+
+If applicable, add mockups, screenshots, or examples from other tools.
+
+## 🌍 Context
+
+- **Use case:** [Personal / Commercial / Both]
+- **Priority:** [Low / Medium / High]
+- **Platform:** [All / Cloudflare / Katabump / VPS]
+
+## ➕ Additional Context
+
+Add any other context about the feature request here.
+
+## ✅ Checklist
+
+- [ ] I've searched existing issues to make sure this isn't a duplicate
+- [ ] This feature would benefit most users
+- [ ] I'm willing to help implement this feature

@@ -1,0 +1,63 @@
+# ============================================================================
+# MASTER YOUSEF WOLF EMPIRE — systemd Service Example
+# ============================================================================
+# Install:
+#   sudo cp examples/systemd.service /etc/systemd/system/wolf-empire.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now wolf-empire
+#
+# Manage:
+#   sudo systemctl status wolf-empire
+#   sudo systemctl restart wolf-empire
+#   sudo journalctl -u wolf-empire -f
+# ============================================================================
+
+[Unit]
+Description=MASTER YOUSEF WOLF EMPIRE Panel
+Documentation=https://github.com/USERNAME/wolf-empire
+After=network.target nginx.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/wolf-empire
+ExecStart=/usr/bin/node /opt/wolf-empire/deploy/katabump/index.js
+Restart=on-failure
+RestartSec=5s
+StartLimitBurst=3
+StartLimitIntervalSec=60
+
+# Environment
+Environment=NODE_ENV=production
+Environment=PORT=8787
+Environment=HOST=0.0.0.0
+Environment=KV_DIR=/var/lib/wolf-empire
+EnvironmentFile=-/opt/wolf-empire/.env
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=512M
+CPUQuota=100%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wolf-empire
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/wolf-empire /opt/wolf-empire/kv-data
+LockPersonality=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictNamespaces=true
+RestrictRealtime=true
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target

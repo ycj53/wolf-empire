@@ -1,0 +1,508 @@
+/* === WOLF EMPIRE — Subscription page neon-fantasy overrides ===
+   This CSS is injected only on the /sub page (via body class .wolf-sub-page).
+   It transforms the default Sukot sub page into the neon-fantasy empire theme
+   matching the reference design: black/neon-purple background, gold-rim cards,
+   green neon status, gold gradient title, medallions, chains. */
+
+/* Force night-mode color scheme on the sub page (override data-theme="rose" etc) */
+html.wolf-sub-page {
+  --bg0: #0a0612;
+  --bg1: #150a26;
+  --bg2: #1a0830;
+  --txt: #efe6ff;
+  --mut: #a896c8;
+  --line: rgba(168,85,247,.22);
+  --blue: #a855f7;
+  --cyan: #c084fc;
+  --purple: #a855f7;
+  --gold: #FFD700;
+  --green: #00FF88;
+  --red: #ef4444;
+  --pink: #ec4899;
+  --card: rgba(28,12,55,.65);
+  --shadow: 0 18px 60px rgba(0,0,0,.6);
+  background: #0a0612 !important;
+  color: #efe6ff !important;
+}
+
+html.wolf-sub-page body {
+  background:
+    radial-gradient(circle at 15% 5%, rgba(168,85,247,.18), transparent 45%),
+    radial-gradient(circle at 85% 95%, rgba(0,255,136,.10), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(124,58,237,.08), transparent 60%),
+    linear-gradient(165deg, #0a0612 0%, #150a26 50%, #050010 100%) !important;
+  background-attachment: fixed;
+  color: #efe6ff !important;
+  font-family: 'Vazirmatn', system-ui, sans-serif !important;
+}
+
+/* === Wrapper — gold border container === */
+html.wolf-sub-page .wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 14px;
+  position: relative;
+}
+
+/* === Header (head3d) — empire banner with crown === */
+html.wolf-sub-page .head, html.wolf-sub-page #head3d {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,215,0,.18), transparent 65%),
+    linear-gradient(135deg, rgba(168,85,247,.28), rgba(124,58,237,.12) 60%, transparent);
+  border: 2px solid #FFD700 !important;
+  border-radius: 22px !important;
+  padding: 22px 18px 18px !important;
+  margin-bottom: 16px !important;
+  box-shadow:
+    0 0 50px rgba(168,85,247,.35),
+    0 0 30px rgba(255,215,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.06) !important;
+  overflow: hidden;
+  text-align: center;
+}
+html.wolf-sub-page .head::before, html.wolf-sub-page #head3d::before {
+  content: '👑';
+  display: block;
+  font-size: 34px;
+  line-height: 1;
+  margin-bottom: 6px;
+  text-shadow: 0 0 18px #FFD700, 0 0 8px #fff;
+  animation: wolfCrownPulse 2.5s ease-in-out infinite;
+}
+@keyframes wolfCrownPulse { 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-3px) scale(1.08); } }
+
+/* Brand text (MASTER YOUSEF) — gold gradient */
+html.wolf-sub-page .brand {
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #FFD700, #fff5b0, #B8860B) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: 0 0 24px rgba(255,215,0,.5);
+  margin: 4px 0 !important;
+  display: block;
+}
+
+/* Subtitle ribbon */
+html.wolf-sub-page .subt {
+  display: inline-block;
+  font-size: 11px !important;
+  font-weight: 700;
+  color: #c084fc !important;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  padding: 3px 14px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(168,85,247,.2), rgba(0,0,0,.3));
+  border: 1px solid rgba(168,85,247,.4);
+}
+
+/* Avatar with gold ring */
+html.wolf-sub-page .head .halo, html.wolf-sub-page #head3d .halo {
+  position: relative;
+  display: inline-block;
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFD700, #B8860B);
+  box-shadow: 0 0 24px rgba(255,215,0,.5), 0 0 12px rgba(168,85,247,.4);
+  margin-bottom: 8px;
+}
+html.wolf-sub-page .head .halo img, html.wolf-sub-page #head3d .halo img,
+html.wolf-sub-page .head img.av, html.wolf-sub-page #head3d img.av {
+  border-radius: 50%;
+  border: 2px solid #FFD700;
+  box-shadow: inset 0 0 12px rgba(0,0,0,.5);
+}
+
+/* === Hint text — subtle glow === */
+html.wolf-sub-page .hint {
+  background: rgba(168,85,247,.10) !important;
+  border: 1px solid rgba(168,85,247,.3) !important;
+  border-radius: 14px !important;
+  padding: 12px 14px !important;
+  margin: 12px 0 !important;
+  color: #c8b8e8 !important;
+  font-size: 12px !important;
+  line-height: 1.8 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* === Cards — gold-rim neon glassmorphism === */
+html.wolf-sub-page .card, html.wolf-sub-page .tgcard, html.wolf-sub-page .tgcard2 {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(168,85,247,.12), rgba(10,4,24,.7)) !important;
+  border: 1.5px solid rgba(255,215,0,.4) !important;
+  border-radius: 18px !important;
+  padding: 16px !important;
+  margin: 12px 0 !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,.5),
+    0 0 24px rgba(168,85,247,.18),
+    inset 0 1px 0 rgba(255,255,255,.05) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+html.wolf-sub-page .card::before, html.wolf-sub-page .tgcard2::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 16px; right: 16px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,215,0,.6), transparent);
+}
+
+/* Card headings — gold gradient */
+html.wolf-sub-page .card h2, html.wolf-sub-page .tgcard2 h2 {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  color: #FFD700 !important;
+  text-shadow: 0 0 12px rgba(255,215,0,.5);
+  margin: 0 0 12px !important;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,215,0,.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+html.wolf-sub-page .card h2 .hic, html.wolf-sub-page .tgcard2 h2 .hic {
+  display: inline-flex;
+  width: 28px; height: 28px;
+  align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(255,215,0,.25), rgba(184,134,11,.12));
+  border: 1px solid rgba(255,215,0,.5);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(255,215,0,.3);
+}
+html.wolf-sub-page .card h2 .hic svg, html.wolf-sub-page .tgcard2 h2 .hic svg {
+  width: 16px; height: 16px;
+  stroke: #FFD700;
+  filter: drop-shadow(0 0 4px rgba(255,215,0,.6));
+}
+html.wolf-sub-page .card h2 .ln, html.wolf-sub-page .tgcard2 h2 .ln {
+  color: #00FF88 !important;
+  font-size: 10px !important;
+  margin-right: auto !important;
+  padding: 3px 10px;
+  background: rgba(0,255,136,.15);
+  border: 1px solid rgba(0,255,136,.4);
+  border-radius: 10px;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0,255,136,.5);
+}
+
+/* === Code blocks (subscription URL) === */
+html.wolf-sub-page code, html.wolf-sub-page #suburl {
+  background: rgba(0,0,0,.5) !important;
+  color: #c8b8e8 !important;
+  border: 1px solid rgba(168,85,247,.3) !important;
+  border-radius: 8px !important;
+  padding: 8px 10px !important;
+  font-size: 11px !important;
+  word-break: break-all;
+  display: block;
+  font-family: 'Courier New', monospace;
+}
+
+/* === Buttons — neon glassmorphism === */
+html.wolf-sub-page .btn {
+  background: linear-gradient(135deg, rgba(168,85,247,.3), rgba(124,58,237,.15)) !important;
+  color: #efe6ff !important;
+  border: 1px solid rgba(168,85,247,.55) !important;
+  border-radius: 12px !important;
+  padding: 10px 14px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: all .25s cubic-bezier(.34,1.56,.64,1) !important;
+  box-shadow: 0 2px 10px rgba(168,85,247,.2), inset 0 1px 0 rgba(255,255,255,.1) !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+html.wolf-sub-page .btn:hover {
+  background: linear-gradient(135deg, rgba(168,85,247,.5), rgba(124,58,237,.28)) !important;
+  border-color: #c084fc !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(168,85,247,.45), 0 0 20px rgba(168,85,247,.35) !important;
+}
+html.wolf-sub-page .btn:active { transform: translateY(0) scale(.97) !important; }
+html.wolf-sub-page .btn svg { width: 14px; height: 14px; stroke: currentColor; }
+
+/* Ghost buttons — gold outline */
+html.wolf-sub-page .btn.ghost {
+  background: linear-gradient(135deg, rgba(255,215,0,.18), rgba(184,134,11,.08)) !important;
+  border-color: rgba(255,215,0,.5) !important;
+  color: #fff5b0 !important;
+  text-shadow: 0 0 8px rgba(255,215,0,.4);
+}
+html.wolf-sub-page .btn.ghost:hover {
+  background: linear-gradient(135deg, rgba(255,215,0,.35), rgba(184,134,11,.18)) !important;
+  border-color: #FFD700 !important;
+  box-shadow: 0 8px 24px rgba(255,215,0,.4), 0 0 20px rgba(255,215,0,.3) !important;
+}
+
+/* Action rows */
+html.wolf-sub-page .acts {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 10px;
+}
+
+/* === Tech-spec rows (ctrow) === */
+html.wolf-sub-page .ctrow {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+html.wolf-sub-page .ct {
+  background: rgba(0,0,0,.35) !important;
+  border: 1px solid rgba(168,85,247,.25) !important;
+  border-radius: 8px !important;
+  padding: 6px 10px !important;
+  display: flex; flex-direction: column;
+  flex: 1; min-width: 80px;
+}
+html.wolf-sub-page .ct .c1 {
+  color: #a896c8 !important;
+  font-size: 10px !important;
+  margin-bottom: 2px;
+}
+html.wolf-sub-page .ct .c2 {
+  color: #efe6ff !important;
+  font-size: 12px !important;
+  font-weight: 700;
+}
+
+/* === Client download links (clrow) === */
+html.wolf-sub-page .clrow {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px;
+}
+html.wolf-sub-page .cl {
+  background: linear-gradient(135deg, rgba(168,85,247,.18), rgba(0,0,0,.4)) !important;
+  border: 1px solid rgba(168,85,247,.4) !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  color: #efe6ff !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  text-decoration: none;
+  text-align: center;
+  transition: all .25s ease;
+}
+html.wolf-sub-page .cl:hover {
+  background: linear-gradient(135deg, rgba(168,85,247,.4), rgba(124,58,237,.2)) !important;
+  border-color: #c084fc !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(168,85,247,.4);
+}
+
+/* === Ping test === */
+html.wolf-sub-page .pingrow {
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(168,85,247,.25);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+html.wolf-sub-page .pingrow .st .l { color: #a896c8 !important; font-size: 11.5px !important; }
+html.wolf-sub-page .pingrow .st .v { color: #00FF88 !important; font-weight: 800; font-size: 16px; text-shadow: 0 0 10px rgba(0,255,136,.5); }
+html.wolf-sub-page .pingrow .pb {
+  background: rgba(0,0,0,.5); border-radius: 6px; height: 6px; overflow: hidden; margin-top: 6px;
+  border: 1px solid rgba(168,85,247,.2);
+}
+html.wolf-sub-page .pingrow .pb i {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, #00FF88, #a855f7);
+  box-shadow: 0 0 8px rgba(0,255,136,.5);
+  transition: width .4s ease;
+}
+html.wolf-sub-page .tips {
+  color: #a896c8 !important;
+  font-size: 11px !important;
+  line-height: 1.8;
+  background: rgba(0,0,0,.25);
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(168,85,247,.18);
+}
+
+/* === Telegram card === */
+html.wolf-sub-page .tgcard2 {
+  border-color: rgba(42,165,224,.5) !important;
+  background:
+    linear-gradient(180deg, rgba(42,165,224,.10), rgba(10,4,24,.7)) !important;
+}
+html.wolf-sub-page .tgcard2::before {
+  background: linear-gradient(90deg, transparent, rgba(42,165,224,.6), transparent);
+}
+html.wolf-sub-page .tgcard2 h2 {
+  color: #29B6F6 !important;
+  text-shadow: 0 0 12px rgba(41,182,246,.5);
+}
+html.wolf-sub-page .tgcard2 h2 .hic {
+  background: linear-gradient(135deg, rgba(41,182,246,.25), rgba(0,0,0,.2));
+  border-color: rgba(41,182,246,.5);
+  box-shadow: 0 0 10px rgba(41,182,246,.3);
+}
+html.wolf-sub-page .tgcard2 h2 .hic svg { stroke: #29B6F6; }
+html.wolf-sub-page .flogo {
+  border-radius: 50%;
+  border: 1px solid rgba(41,182,246,.4);
+}
+
+/* === Users / stats section === */
+html.wolf-sub-page #users, html.wolf-sub-page .urow {
+  background: linear-gradient(180deg, rgba(168,85,247,.08), rgba(0,0,0,.3)) !important;
+  border: 1px solid rgba(168,85,247,.25) !important;
+  border-radius: 14px !important;
+  padding: 12px !important;
+  margin: 12px 0 !important;
+}
+html.wolf-sub-page .tu {
+  background: rgba(0,0,0,.35) !important;
+  border: 1px solid rgba(168,85,247,.2) !important;
+  border-radius: 10px !important;
+  padding: 8px 10px !important;
+  margin-bottom: 6px;
+  color: #efe6ff !important;
+}
+html.wolf-sub-page .tu .nm { color: #FFD700 !important; font-weight: 800; }
+html.wolf-sub-page .tu .pct, html.wolf-sub-page .pct { color: #00FF88 !important; font-weight: 700; }
+
+/* Progress bars */
+html.wolf-sub-page .pb i, html.wolf-sub-page progress {
+  background: linear-gradient(90deg, #a855f7, #FFD700) !important;
+}
+
+/* === Warnbox (alerts) === */
+html.wolf-sub-page #warnbox {
+  background: linear-gradient(135deg, rgba(239,68,68,.2), rgba(0,0,0,.4)) !important;
+  border: 1px solid rgba(239,68,68,.5) !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  color: #fca5a5 !important;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(239,68,68,.4);
+}
+
+/* === QR modal/mask === */
+html.wolf-sub-page #mask {
+  background: rgba(5,2,12,.85) !important;
+  backdrop-filter: blur(8px);
+}
+html.wolf-sub-page #qbox {
+  background:
+    linear-gradient(180deg, rgba(168,85,247,.15), rgba(10,4,24,.9)) !important;
+  border: 2px solid #FFD700 !important;
+  border-radius: 18px !important;
+  padding: 18px !important;
+  box-shadow: 0 0 40px rgba(255,215,0,.4), 0 0 60px rgba(168,85,247,.3) !important;
+}
+html.wolf-sub-page #qbox h3, html.wolf-sub-page #qbox .qt {
+  color: #FFD700 !important;
+  text-shadow: 0 0 12px rgba(255,215,0,.5);
+}
+html.wolf-sub-page #qbox canvas, html.wolf-sub-page #qbox img {
+  border-radius: 10px;
+  border: 2px solid rgba(255,215,0,.3);
+  background: #fff;
+  padding: 8px;
+}
+
+/* === Chips (status indicators) === */
+html.wolf-sub-page #chips, html.wolf-sub-page .chips {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+}
+html.wolf-sub-page #chips > *, html.wolf-sub-page .chip {
+  background: linear-gradient(135deg, rgba(0,255,136,.18), rgba(0,0,0,.3)) !important;
+  border: 1px solid rgba(0,255,136,.4) !important;
+  color: #aaffd6 !important;
+  padding: 4px 10px !important;
+  border-radius: 12px !important;
+  font-size: 10.5px !important;
+  font-weight: 700;
+  text-shadow: 0 0 6px rgba(0,255,136,.4);
+}
+
+/* === Footer === */
+html.wolf-sub-page .foot, html.wolf-sub-page footer {
+  text-align: center;
+  padding: 18px 14px;
+  margin-top: 16px;
+  background: linear-gradient(180deg, transparent, rgba(168,85,247,.1));
+  border-top: 2px solid #FFD700;
+  border-radius: 16px 16px 0 0;
+  position: relative;
+}
+html.wolf-sub-page .foot::before, html.wolf-sub-page footer::before {
+  content: '⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓';
+  position: absolute;
+  top: -10px; left: 0; right: 0;
+  text-align: center;
+  font-size: 13px;
+  color: #FFD700;
+  text-shadow: 0 0 8px #FFD700, 0 0 4px #fff;
+  letter-spacing: 1px;
+  animation: wolfChainShine 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes wolfChainShine { 0%,100%{ opacity:.8; } 50%{ opacity:1; text-shadow:0 0 12px #FFD700, 0 0 6px #fff; } }
+html.wolf-sub-page .foot .brand, html.wolf-sub-page footer .brand {
+  font-size: 16px;
+  background: linear-gradient(135deg, #FFD700, #fff5b0, #B8860B);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 16px rgba(255,215,0,.4);
+}
+html.wolf-sub-page .foot a, html.wolf-sub-page footer a {
+  color: #29B6F6 !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* === QR toggle line === */
+html.wolf-sub-page .qrline {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(0,0,0,.4);
+  border: 1px solid rgba(255,215,0,.3);
+  border-radius: 12px;
+  text-align: center;
+}
+html.wolf-sub-page .qrline canvas, html.wolf-sub-page .qrline img {
+  border-radius: 8px;
+  border: 2px solid rgba(255,215,0,.4);
+  background: #fff;
+  padding: 8px;
+}
+
+/* Hide elements that are clipped or unwanted */
+html.wolf-sub-page .hide { display: none !important; }
+
+/* Selection color */
+html.wolf-sub-page ::selection {
+  background: rgba(255,215,0,.3);
+  color: #fff;
+}
+
+/* Scrollbar */
+html.wolf-sub-page ::-webkit-scrollbar { width: 8px; }
+html.wolf-sub-page ::-webkit-scrollbar-track { background: rgba(0,0,0,.3); }
+html.wolf-sub-page ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FFD700, #B8860B);
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(255,215,0,.5);
+}
+
+/* Headings inside cards */
+html.wolf-sub-page h1, html.wolf-sub-page h2, html.wolf-sub-page h3 {
+  color: #FFD700 !important;
+}
+
+/* Links */
+html.wolf-sub-page a { color: #c084fc !important; }
+html.wolf-sub-page a:hover { color: #FFD700 !important; text-shadow: 0 0 8px rgba(255,215,0,.5); }

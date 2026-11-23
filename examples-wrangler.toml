@@ -1,0 +1,54 @@
+# ============================================================================
+# MASTER YOUSEF WOLF EMPIRE — Cloudflare Workers Config Example
+# ============================================================================
+# Copy to: wrangler.toml (in project root)
+# Get KV id: wrangler kv:namespace create KV
+# Deploy:    wrangler deploy
+# ============================================================================
+
+#:schema node_modules/wrangler/config-schema.json
+name = "wolf-empire"
+main = "worker.js"
+compatibility_date = "2024-11-06"
+compatibility_flags = ["nodejs_compat"]
+
+# workers.dev route (free subdomain)
+workers_dev = true
+
+# KV namespace binding: env.KV
+[[kv_namespaces]]
+binding = "KV"
+id = "REPLACE_WITH_YOUR_KV_ID"
+
+# Durable Object binding: LiveCounter
+[[durable_objects.bindings]]
+name = "LiveCounter"
+class_name = "LiveCounter"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["LiveCounter"]
+
+# Custom domain (optional)
+# [[routes]]
+# pattern = "panel.yourdomain.com"
+# custom_domain = true
+
+# Panel configuration environment variables
+[vars]
+UUID = "06472f28-8568-4e61-9bd1-8ed64f25acc1"
+TG_BOT_TOKEN = "REPLACE_WITH_BOT_TOKEN"
+TG_ADMIN_ID = "REPLACE_WITH_ADMIN_ID"
+PUBLIC_URL = "wolf-empire.your-subdomain.workers.dev"
+GEMINI_API_KEY = "REPLACE_WITH_ZAI_API_KEY"
+GEMINI_MODEL = "gemini-1.5-flash"
+BRAND_NAME = "MASTER YOUSEF"
+BRAND_FULL = "MASTER YOUSEF WOLF EMPIRE"
+SUPPORT_URL = "@Kmnbvczx0090"
+TELEGRAM_CHANNEL = "https://t.me/vpnstan1"
+
+# === Secrets (use `wrangler secret put` instead) ===
+# These should NOT be in plaintext here. Set them with:
+#   wrangler secret put GEMINI_API_KEY
+#   wrangler secret put TG_BOT_TOKEN
+#   wrangler secret put ADMIN_PASSWORD

@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.env
+kv-data
+.mf
+*.png
+*.jpg
+*.log
+.DS_Store
+git
+.git

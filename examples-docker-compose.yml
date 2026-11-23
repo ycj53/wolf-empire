@@ -1,0 +1,99 @@
+# ============================================================================
+# MASTER YOUSEF WOLF EMPIRE — Docker Compose Example
+# ============================================================================
+# Usage:
+#   1. Copy this file to your project root
+#   2. Edit environment variables
+#   3. Run: docker compose up -d
+# ============================================================================
+
+version: '3.8'
+
+services:
+  wolf-empire:
+    build: .
+    container_name: wolf-empire
+    restart: unless-stopped
+    ports:
+      - "8787:8787"
+    volumes:
+      - wolf-kv:/app/kv-data
+      - ./worker.js:/app/worker.js:ro
+    environment:
+      # === Server ===
+      - NODE_ENV=production
+      - PORT=8787
+      - HOST=0.0.0.0
+      
+      # === Public URL ===
+      - PANEL_HOST=panel.yourdomain.com
+      - PUBLIC_TLS=1
+      - PUBLIC_LINK_PORT=443
+      
+      # === Admin ===
+      - ADMIN_PASSWORD=ChangeThisPassword123!
+      - UUID=06472f28-8568-4e61-9bd1-8ed64f25acc1
+      
+      # === Storage ===
+      - KV_DIR=/app/kv-data
+      
+      # === Telegram Bot (optional) ===
+      - TG_BOT_TOKEN=${TG_BOT_TOKEN:-}
+      - TG_ADMIN_ID=${TG_ADMIN_ID:-}
+      
+      # === WOLF AI (optional) ===
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - GEMINI_MODEL=gemini-1.5-flash
+      
+      # === Branding ===
+      - BRAND_NAME=MASTER YOUSEF
+      - BRAND_FULL=MASTER YOUSEF WOLF EMPIRE
+      - SUPPORT_URL=@Kmnbvczx0090
+      - TELEGRAM_CHANNEL=https://t.me/vpnstan1
+      
+      # === User Defaults ===
+      - USER_TRAFFIC_GB=0
+      - USER_EXPIRY_DAYS=30
+    
+    # Resource limits (optional)
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8787/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Optional: nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: wolf-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - nginx-certs:/etc/nginx/certs
+      - nginx-logs:/var/log/nginx
+    depends_on:
+      - wolf-empire
+
+volumes:
+  wolf-kv:
+    driver: local
+  nginx-certs:
+  nginx-logs:

@@ -1,0 +1,31 @@
+---
+name: ❓ Support Question
+about: Ask a question about using the panel
+title: "[QUESTION] "
+labels: ["question", "support"]
+assignees: []
+---
+
+## ❓ Question
+
+A clear description of your question.
+
+## 🌍 Environment
+
+- **Platform:** [Cloudflare Workers / Katabump / VPS / Docker]
+- **What I'm trying to do:** [...]
+
+## 📋 What I've Tried
+
+- [ ] Read the [README](../../README.md)
+- [ ] Checked the [FAQ](../../docs/FAQ.md)
+- [ ] Looked at [Troubleshooting](../../docs/TROUBLESHOOTING.md)
+- [ ] Searched existing issues
+
+## 📝 Details
+
+Add any relevant details, configuration, or context here.
+
+---
+
+💡 **For faster help**, join our Telegram: [@Kmnbvczx0090](https://t.me/Kmnbvczx0090)

@@ -1,0 +1,65 @@
+name: 🐺👑 Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'worker.js'
+      - 'wrangler.toml'
+      - '.github/workflows/deploy-cloudflare.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: 🚀 Deploy Worker
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔄 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 Install Wrangler
+        run: npm install -g wrangler@latest
+
+      - name: 🔧 Create wrangler.toml
+        run: |
+          if [ ! -f wrangler.toml ]; then
+            if [ -f wrangler.toml.example ]; then
+              cp wrangler.toml.example wrangler.toml
+              echo "✅ Created wrangler.toml from example"
+            else
+              cat > wrangler.toml << 'EOF'
+          name = "wolf-empire"
+          main = "worker.js"
+          compatibility_date = "2024-09-23"
+
+          [vars]
+          ADMIN_PASSWORD = "SUKOT"
+          UUID = "06472f28-8568-4e61-9bd1-8ed64f25acc1"
+          EOF
+              echo "✅ Created wrangler.toml with defaults"
+            fi
+          else
+            echo "✅ wrangler.toml already exists"
+          fi
+
+      - name: 🚀 Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
+      - name: ✅ Notify success
+        run: |
+          echo "🐺👑 Master Yousef Wolf Empire deployed successfully!"
+          echo "⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓⛓"
+          echo "🐾 🐾 🐾"

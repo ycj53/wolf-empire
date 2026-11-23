@@ -1,0 +1,9 @@
+name = "wolf-empire"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+# ⚠️ این مقادیر رو عوض کن!
+[vars]
+ADMIN_PASSWORD = "M@st3r_Y0us3f#W0LF!928"
+UUID = "06472f28-8568-4e61-9bd1-8ed64f25acc1"
+PANEL_HOST = "wolf-empire.SUBDOMAIN.workers.dev"
